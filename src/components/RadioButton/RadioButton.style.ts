@@ -24,4 +24,6 @@ export const RadioOption = styled.button<{ isActive: boolean }>`
   background: ${(props) => (props.isActive ? '#61dafb' : 'transparent')};
   border: 1px solid #61dafb;
   color: ${(props) => (props.isActive ? 'black' : '#61dafb')};
+
+  cursor: pointer;
 `
