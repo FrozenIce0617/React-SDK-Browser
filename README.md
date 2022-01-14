@@ -4,7 +4,7 @@ This is the simple application that lists installed or uninstalled sdks
 
 <p align="center">
     <img src="./screenshot.png" alt="screenshot"
-	width="768" height="500" />
+	width="768" height="350" />
 </p>
 
 ## How to use
