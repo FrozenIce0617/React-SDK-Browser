@@ -1,26 +1,20 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { RadioButton } from 'components'
-import InstalledData from 'helpers/static/installed.json'
-import UninstalledData from 'helpers/static/uninstalled.json'
 import moment from 'moment'
+
+import { useSdkRedux } from 'redux/sdk/hooks'
 
 import * as Styled from './Dashboard.style'
 import { Sdk, SdkIndex } from './types'
 
 const DashboardView: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(SdkIndex.INSTALLED)
+  const { sdkInfo: activeData, getSdkInfo } = useSdkRedux()
 
-  const activeData = useMemo(() => {
-    if (activeIndex === SdkIndex.INSTALLED) {
-      return InstalledData.data.installedSdks
-    }
-    if (activeIndex === SdkIndex.UNINSTALLED) {
-      return UninstalledData.data.uninstalledSdks
-    }
-
-    return []
-  }, [activeIndex])
+  useEffect(() => {
+    getSdkInfo(activeIndex)
+  }, [activeIndex, getSdkInfo])
 
   const sdkByCategory = useMemo(() => {
     const category: Record<string, Sdk[]> = {}
